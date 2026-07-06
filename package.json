@@ -1,0 +1,24 @@
+{
+  "name": "code-card-generator",
+  "version": "1.0.0",
+  "description": "- Profile picture upload - Username - Verified badge toggle - Content text - Code snippet - Theme selector - Font selector",
+  "main": "eslint.config.js",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./public/css/input.css -o ./dist/css/output.css --minify",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "Abhisek Sah",
+  "license": "ISC",
+  "dependencies": {
+    "html-to-image": "^1.11.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/cli": "^4.3.2",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "tailwindcss": "^4.3.2"
+  }
+}
