@@ -1,15 +1,24 @@
 const avatarInput = document.getElementById('avatarInput');
+const nameInput = document.getElementById('nameInput');
 const usernameInput = document.getElementById('usernameInput');
 const contentInput = document.getElementById('contentInput');
 const codeInput = document.getElementById('codeInput');
+const verifiedInput = document.getElementById('verifiedInput');
 
 const previewAvatar = document.getElementById('previewAvatar');
+const previewName = document.getElementById('previewName');
 const previewUsername = document.getElementById('previewUsername');
 const previewContent = document.getElementById('previewContent');
 const previewCode = document.getElementById('previewCode');
+const verifiedBadge = document.getElementById('verifiedBadge');
 
 const downloadBtn = document.getElementById('downloadBtn');
 const card = document.getElementById('card');
+
+/* ---------- Name ---------- */
+nameInput.addEventListener('input', ()=>{
+  previewName.textContent = nameInput.value || 'Name';
+});
 
 /* ---------- Username ---------- */
 
@@ -17,6 +26,15 @@ usernameInput.addEventListener('input', () => {
   previewUsername.textContent =
     usernameInput.value || 'username';
 });
+
+/* ---------- Badge ---------- */
+verifiedInput.addEventListener('change', ()=>{
+  if(verifiedInput.checked){
+    verifiedBadge.classList.remove('hidden');
+  } else {
+    verifiedBadge.classList.add('hidden');
+  }
+})
 
 /* ---------- Content ---------- */
 

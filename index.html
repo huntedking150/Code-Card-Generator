@@ -27,6 +27,17 @@
           </div>
 
           <div>
+            <label class="mb-2 block text-sm font-medium"> Display Name </label>
+
+            <input
+              id="nameInput"
+              type="text"
+              placeholder="John Doe"
+              class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div>
             <label class="mb-2 block text-sm font-medium"> Username </label>
 
             <input
@@ -35,6 +46,17 @@
               placeholder="john_doe"
               class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-blue-500"
             />
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="verifiedInput"
+              class="h-4 w-4 cursor-pointer"
+            />
+            <label for="verifiedInput" class="text-sm font-medium"
+              >Verified Account</label
+            >
           </div>
 
           <div>
@@ -82,11 +104,43 @@
               />
 
               <div>
-                <h3 id="previewUsername" class="font-semibold">username</h3>
+                <!-- <h3
+                  id="previewName"
+                  class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark"
+                >
+                  Name
+                </h3> -->
+                <div class="flex items-center gap-1">
+                  <h3
+                    id="previewName"
+                    class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark"
+                  >
+                    Name
+                  </h3>
+
+                  <svg
+                    id="verifiedBadge"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="hidden h-5 w-5 text-blue-500"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 2l2.09 2.26 3.07-.4.4 3.07L20 9.02l-1.84 2.47L20 14l-2.44 2.09-.4 3.07-3.07-.4L12 21l-2.09-2.26-3.07.4-.4-3.07L4 14l1.84-2.47L4 9.02l2.44-2.09.4-3.07 3.07.4L12 2zm-1 13l6-6-1.41-1.41L11 12.17l-2.59-2.58L7 11l4 4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="text-xs text-text-secondary-light dark:text-text-secondary-dark"
+                >
+                  @<span id="previewUsername">username</span>
+                </p>
               </div>
             </div>
 
-            <p id="previewContent" class="mb-5 text-zinc-200">
+            <p id="previewContent" class="mb-5 text-zinc-200 text-lg">
               Your content appears here...
             </p>
 
