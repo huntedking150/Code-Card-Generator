@@ -3,161 +3,352 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./public/css/output.css" />
+    <link
+      id="hljsTheme"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-dark.min.css"
+    />
+    <script type="importmap">
+      {
+        "imports": {
+          "codemirror": "https://esm.sh/codemirror@6.0.2",
+          "@codemirror/lang-javascript": "https://esm.sh/@codemirror/lang-javascript@6.2.4",
+          "@codemirror/theme-one-dark": "https://esm.sh/@codemirror/theme-one-dark@6.1.3"
+        }
+      }
+    </script>
     <title>Code Card Generator</title>
   </head>
-  <body class="min-h-screen bg-zinc-950 text-white">
-    <div class="container mx-auto px-4 py-10">
-      <h1 class="mb-8 text-center text-4xl font-bold">Code Card Generator</h1>
+  <body class="page-body min-h-screen font-sans text-white antialiased">
+    <div class="page-bg" aria-hidden="true">
+      <div class="page-bg__orb page-bg__orb--violet"></div>
+      <div class="page-bg__orb page-bg__orb--fuchsia"></div>
+      <div class="page-bg__orb page-bg__orb--amber"></div>
+      <div class="page-bg__orb page-bg__orb--cyan"></div>
+    </div>
 
-      <div class="grid gap-8 lg:grid-cols-2">
+    <main class="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-14">
+      <header class="mb-10 text-center lg:mb-14">
+        <div
+          class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-violet-200 backdrop-blur-sm"
+        >
+          <span class="text-base" aria-hidden="true">✨</span>
+          Create shareable dev cards
+        </div>
+
+        <h1
+          class="bg-linear-to-r from-violet-300 via-fuchsia-300 to-amber-300 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl lg:text-6xl"
+        >
+          Code Card Generator
+        </h1>
+
+        <p class="mx-auto mt-4 max-w-xl text-base text-white/55 sm:text-lg">
+          Design colorful, realistic code snippet cards for social media in
+          seconds.
+        </p>
+      </header>
+
+      <div class="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
         <!-- FORM -->
-        <div class="space-y-5 rounded-2xl bg-zinc-900 p-6">
-          <div>
-            <label class="mb-2 block text-sm font-medium">
+        <section
+          class="form-panel space-y-6 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl shadow-violet-950/40 backdrop-blur-xl sm:p-8"
+        >
+          <div class="form-panel__header">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-violet-500 to-fuchsia-600 text-lg shadow-lg shadow-violet-500/30"
+              aria-hidden="true"
+            >
+              ✏️
+            </div>
+            <div>
+              <h2 class="text-lg font-semibold text-white">Card Details</h2>
+              <p class="text-sm text-white/45">Fill in your profile and code</p>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="avatarInput">
+              <span class="field-label__dot field-label__dot--violet"></span>
               Profile Picture
             </label>
 
-            <input
-              id="avatarInput"
-              type="file"
-              accept="image/*"
-              class="w-full rounded-lg border border-zinc-700 p-2"
-            />
-          </div>
-
-          <div>
-            <label class="mb-2 block text-sm font-medium"> Display Name </label>
-
-            <input
-              id="nameInput"
-              type="text"
-              placeholder="John Doe"
-              class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-blue-500"
-            />
-          </div>
-
-          <div>
-            <label class="mb-2 block text-sm font-medium"> Username </label>
-
-            <input
-              id="usernameInput"
-              type="text"
-              placeholder="john_doe"
-              class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-blue-500"
-            />
-          </div>
-
-          <div class="flex items-center gap-3">
-            <input
-              type="checkbox"
-              id="verifiedInput"
-              class="h-4 w-4 cursor-pointer"
-            />
-            <label for="verifiedInput" class="text-sm font-medium"
-              >Verified Account</label
+            <label
+              for="avatarInput"
+              id="avatarUpload"
+              class="avatar-upload group flex cursor-pointer items-center gap-4 rounded-2xl border border-dashed border-violet-400/35 bg-violet-500/5 p-4 transition hover:border-fuchsia-400/60 hover:bg-violet-500/10"
             >
+              <div
+                class="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-linear-to-br from-violet-500 to-fuchsia-600 p-0.5 shadow-lg shadow-violet-500/25 transition group-hover:shadow-fuchsia-500/35"
+              >
+                <img
+                  id="avatarUploadPreview"
+                  src="https://placehold.co/100/7c3aed/ffffff?text=+"
+                  alt="Upload preview"
+                  class="h-full w-full rounded-full object-cover bg-slate-900"
+                />
+              </div>
+
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-semibold text-white/90">
+                  Click to upload photo
+                </p>
+                <p class="mt-0.5 text-xs text-white/40">PNG, JPG or GIF</p>
+                <p
+                  id="avatarFileName"
+                  class="mt-1 truncate text-xs font-medium text-fuchsia-300"
+                ></p>
+              </div>
+
+              <span
+                class="shrink-0 rounded-xl bg-linear-to-r from-violet-600 to-fuchsia-600 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-violet-600/30 transition group-hover:from-violet-500 group-hover:to-fuchsia-500"
+              >
+                Browse
+              </span>
+
+              <input
+                id="avatarInput"
+                type="file"
+                accept="image/*"
+                class="sr-only"
+              />
+            </label>
           </div>
 
-          <div>
-            <label class="mb-2 block text-sm font-medium"> Content </label>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div class="field-group">
+              <label class="field-label" for="nameInput">
+                <span class="field-label__dot field-label__dot--fuchsia"></span>
+                Display Name
+              </label>
+              <input
+                id="nameInput"
+                type="text"
+                placeholder="John Doe"
+                class="field-input"
+              />
+            </div>
 
+            <div class="field-group">
+              <label class="field-label" for="usernameInput">
+                <span class="field-label__dot field-label__dot--amber"></span>
+                Username
+              </label>
+              <input
+                id="usernameInput"
+                type="text"
+                placeholder="john_doe"
+                class="field-input"
+              />
+            </div>
+          </div>
+
+          <label
+            class="verified-toggle flex cursor-pointer items-center gap-3 rounded-2xl border border-white/8 bg-white/4 px-4 py-3 transition hover:border-sky-400/30 hover:bg-sky-500/5"
+          >
+            <input type="checkbox" id="verifiedInput" class="sr-only" />
+            <span class="verified-toggle__track" aria-hidden="true">
+              <span class="verified-toggle__thumb"></span>
+            </span>
+            <span
+              class="flex items-center gap-2 text-sm font-medium text-white/85"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-4 w-4 text-sky-400"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12 2l2.09 2.26 3.07-.4.4 3.07L20 9.02l-1.84 2.47L20 14l-2.44 2.09-.4 3.07-3.07-.4L12 21l-2.09-2.26-3.07.4-.4-3.07L4 14l1.84-2.47L4 9.02l2.44-2.09.4-3.07 3.07.4L12 2zm-1 13l6-6-1.41-1.41L11 12.17l-2.59-2.58L7 11l4 4z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              Verified Account
+            </span>
+          </label>
+
+          <div class="field-group">
+            <label class="field-label" for="contentInput">
+              <span class="field-label__dot field-label__dot--emerald"></span>
+              Content
+            </label>
             <textarea
               id="contentInput"
               rows="4"
               placeholder="Your programming tip..."
-              class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 outline-none focus:border-blue-500"
+              class="field-input resize-y"
             ></textarea>
           </div>
 
-          <div>
-            <label class="mb-2 block text-sm font-medium"> Code </label>
-
-            <textarea
-              id="codeInput"
-              rows="8"
-              placeholder="const hello = 'world'"
-              class="w-full rounded-lg border border-zinc-700 bg-zinc-800 p-3 font-mono outline-none focus:border-blue-500"
-            ></textarea>
+          <div class="field-group">
+            <label class="field-label">
+              <span class="field-label__dot field-label__dot--cyan"></span>
+              Code
+            </label>
+            <div
+              id="codeEditor"
+              class="code-editor-host overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 font-mono shadow-inner shadow-black/20"
+            ></div>
           </div>
 
-          <button
-            id="downloadBtn"
-            class="w-full rounded-lg bg-blue-600 px-4 py-3 font-semibold transition hover:bg-blue-700"
-          >
+          <div class="field-group">
+            <label class="field-label">
+              <span class="field-label__dot field-label__dot--rose"></span>
+              Export Background
+            </label>
+
+            <div class="flex gap-3">
+              <label
+                class="bg-theme-option group flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/4 px-4 py-4 text-sm font-medium transition hover:border-violet-400/40"
+              >
+                <span
+                  class="h-8 w-8 rounded-full bg-linear-to-br from-slate-800 to-slate-950 shadow-inner ring-2 ring-white/10 transition group-hover:ring-violet-400/50"
+                  aria-hidden="true"
+                ></span>
+                <input
+                  type="radio"
+                  name="bgTheme"
+                  value="dark"
+                  class="sr-only"
+                  checked
+                />
+                Dark
+              </label>
+
+              <label
+                class="bg-theme-option group flex flex-1 cursor-pointer flex-col items-center gap-2 rounded-2xl border border-white/10 bg-white/4 px-4 py-4 text-sm font-medium transition hover:border-amber-400/40"
+              >
+                <span
+                  class="h-8 w-8 rounded-full bg-linear-to-br from-white to-zinc-100 shadow-md ring-2 ring-white/20 transition group-hover:ring-amber-400/50"
+                  aria-hidden="true"
+                ></span>
+                <input
+                  type="radio"
+                  name="bgTheme"
+                  value="light"
+                  class="sr-only"
+                />
+                White
+              </label>
+            </div>
+          </div>
+
+          <button id="downloadBtn" class="download-btn" type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="h-5 w-5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4"
+              />
+            </svg>
             Download PNG
           </button>
-        </div>
+        </section>
 
         <!-- PREVIEW -->
-        <div class="flex justify-center">
-          <div
-            id="card"
-            class="w-full max-w-xl rounded-3xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl"
-          >
-            <div class="mb-5 flex items-center gap-3">
-              <img
-                id="previewAvatar"
-                src="https://placehold.co/100"
-                alt="avatar"
-                class="h-12 w-12 rounded-full object-cover"
-              />
+        <section class="preview-panel lg:sticky lg:top-8">
+          <div class="mb-5 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span
+                class="live-dot h-2.5 w-2.5 rounded-full bg-emerald-400"
+                aria-hidden="true"
+              ></span>
+              <span
+                class="text-xs font-bold tracking-[0.2em] text-white/50 uppercase"
+              >
+                Live Preview
+              </span>
+            </div>
+            <span
+              class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/40"
+            >
+              Updates in real time
+            </span>
+          </div>
 
-              <div>
-                <!-- <h3
-                  id="previewName"
-                  class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark"
-                >
-                  Name
-                </h3> -->
-                <div class="flex items-center gap-1">
-                  <h3
-                    id="previewName"
-                    class="text-lg font-semibold text-text-primary-light dark:text-text-primary-dark"
-                  >
-                    Name
-                  </h3>
+          <div class="preview-frame rounded-[2rem] p-1">
+            <div
+              id="card"
+              data-theme="dark"
+              class="card-preview w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900 shadow-2xl"
+            >
+              <div class="p-6 sm:p-7">
+                <div class="mb-5 flex items-center gap-3.5">
+                  <img
+                    id="previewAvatar"
+                    src="https://placehold.co/100/7c3aed/ffffff?text=+"
+                    alt="avatar"
+                    class="h-12 w-12 rounded-full object-cover ring-2 ring-violet-500/40 ring-offset-2 ring-offset-slate-900"
+                  />
 
-                  <svg
-                    id="verifiedBadge"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    class="hidden h-5 w-5 text-blue-500"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M12 2l2.09 2.26 3.07-.4.4 3.07L20 9.02l-1.84 2.47L20 14l-2.44 2.09-.4 3.07-3.07-.4L12 21l-2.09-2.26-3.07.4-.4-3.07L4 14l1.84-2.47L4 9.02l2.44-2.09.4-3.07 3.07.4L12 2zm-1 13l6-6-1.41-1.41L11 12.17l-2.59-2.58L7 11l4 4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
+                  <div>
+                    <div class="flex items-center gap-1.5">
+                      <h3 id="previewName" class="text-lg font-bold text-white">
+                        Name
+                      </h3>
+
+                      <svg
+                        id="verifiedBadge"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="hidden h-5 w-5 text-sky-400"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12 2l2.09 2.26 3.07-.4.4 3.07L20 9.02l-1.84 2.47L20 14l-2.44 2.09-.4 3.07-3.07-.4L12 21l-2.09-2.26-3.07.4-.4-3.07L4 14l1.84-2.47L4 9.02l2.44-2.09.4-3.07 3.07.4L12 2zm-1 13l6-6-1.41-1.41L11 12.17l-2.59-2.58L7 11l4 4z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <p
+                      id="previewUsernameWrap"
+                      class="text-sm text-violet-300/70"
+                    >
+                      @<span id="previewUsername">username</span>
+                    </p>
+                  </div>
                 </div>
+
                 <p
-                  class="text-xs text-text-secondary-light dark:text-text-secondary-dark"
+                  id="previewContent"
+                  class="mb-5 text-base leading-relaxed text-slate-200 sm:text-lg"
                 >
-                  @<span id="previewUsername">username</span>
+                  Your content appears here...
                 </p>
+
+                <div
+                  id="previewCodeBlock"
+                  class="overflow-x-auto rounded-2xl border border-white/5 bg-slate-950 p-4 shadow-inner"
+                >
+                  <pre class="m-0"><code
+                    id="previewCode"
+                    class="hljs block font-mono text-sm whitespace-pre-wrap wrap-break-word"
+                  ></code></pre>
+                </div>
               </div>
             </div>
-
-            <p id="previewContent" class="mb-5 text-zinc-200 text-lg">
-              Your content appears here...
-            </p>
-
-            <div class="overflow-x-auto rounded-xl bg-zinc-950 p-4">
-              <pre>
-<code
-id="previewCode"
-class="font-mono text-sm text-green-400"
->
-const hello = "world";
-</code>
-            </pre>
-            </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
 
     <script type="module" src="./app.js"></script>
   </body>
