@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: template-maker
+    env: node
+    branch: main
+    staticPublishPath: ./
+    buildCommand: npm install && npm run build
