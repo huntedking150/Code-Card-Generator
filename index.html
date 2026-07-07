@@ -259,10 +259,26 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">
-              <!-- <span class="field-label__dot field-label__dot--cyan"></span> -->
-              Code
-            </label>
+            <div class="flex items-center justify-between">
+              <label class="field-label">
+                <!-- <span class="field-label__dot field-label__dot--cyan"></span> -->
+                Code
+              </label>
+              <label
+                class="code-toggle flex cursor-pointer items-center gap-2 rounded-lg border border-white/8 bg-white/4 px-3 py-1.5 transition hover:border-cyan-400/30 hover:bg-cyan-500/5"
+              >
+                <input
+                  type="checkbox"
+                  id="codeToggle"
+                  class="sr-only"
+                  checked
+                />
+                <span class="code-toggle__track" aria-hidden="true">
+                  <span class="code-toggle__thumb"></span>
+                </span>
+                <span class="text-xs font-medium text-white/70">Visible</span>
+              </label>
+            </div>
             <div
               id="codeEditor"
               class="code-editor-host overflow-hidden rounded-2xl border border-white/10 bg-slate-950/80 font-mono shadow-inner shadow-black/20"

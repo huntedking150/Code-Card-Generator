@@ -25,7 +25,10 @@ const previewCodeBlock = document.getElementById('previewCodeBlock');
 const previewUsernameWrap = document.getElementById('previewUsernameWrap');
 const hljsTheme = document.getElementById('hljsTheme');
 const bgThemeInputs = document.querySelectorAll('input[name="bgTheme"]');
+const codeToggle = document.getElementById('codeToggle');
 const defaultCode = 'const hello = "world";';
+
+let isCodeVisible = true;
 
 const CARD_THEMES = {
   dark: {
@@ -153,6 +156,12 @@ const codeEditorView = new EditorView({
 });
 
 syncCodePreview();
+
+/* ---------- Code Toggle ---------- */
+codeToggle.addEventListener('change', () => {
+  isCodeVisible = codeToggle.checked;
+  previewCodeBlock.classList.toggle('hidden', !isCodeVisible);
+});
 
 /* ---------- Export background ---------- */
 
