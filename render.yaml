@@ -1,7 +1,7 @@
 services:
-  - type: static
+  - type: web
     name: code-card-generator
-    env: node
-    branch: main
-    staticPublishPath: ./
+    env: static
     buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    autoDeploy: true
