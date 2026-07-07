@@ -1,6 +1,6 @@
 services:
   - type: static
-    name: template-maker
+    name: code-card-generator
     env: node
     branch: main
     staticPublishPath: ./
