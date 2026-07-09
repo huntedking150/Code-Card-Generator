@@ -210,19 +210,26 @@ downloadBtn.addEventListener('click', async () => {
     const rect = card.getBoundingClientRect();
     const exportBackground = CARD_THEMES[activeCardTheme].exportBackground;
 
-    const dataUrl = await toPng(card, {
-      cacheBust: true,
-      pixelRatio: 3,
-      backgroundColor: exportBackground,
-      width: Math.max(1, Math.round(rect.width)),
-      height: Math.max(1, Math.round(rect.height)),
-      style: {
-        display: 'block',
-        width: `${Math.max(1, Math.round(rect.width))}px`,
-        height: `${Math.max(1, Math.round(rect.height))}px`,
-        margin: '0'
-      }
-    });
+    const originalBorderRadius = card.style.borderRadius;
+
+card.style.borderRadius = '0';
+
+const dataUrl = await toPng(card, {
+  cacheBust: true,
+  pixelRatio: 3,
+  backgroundColor: exportBackground,
+  width: Math.max(1, Math.round(rect.width)),
+  height: Math.max(1, Math.round(rect.height)),
+  style: {
+    display: 'block',
+    width: `${Math.max(1, Math.round(rect.width))}px`,
+    height: `${Math.max(1, Math.round(rect.height))}px`,
+    margin: '0',
+    borderRadius: '0'
+  }
+});
+
+card.style.borderRadius = originalBorderRadius;
 
     const link = document.createElement('a');
 
