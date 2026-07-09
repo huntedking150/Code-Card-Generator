@@ -4,22 +4,22 @@ Create beautiful, shareable code snippet cards for social media in seconds.
 
 **Code Card Generator** is a lightweight web application that helps developers turn code snippets into visually appealing social-media-ready cards. Customize your profile, add content, insert code, and export high-quality PNG images instantly.
 
-🌐 **Live Demo:** https://code-card-generator.onrender.com/
+🌐 **Live Demo:** https://cardgen.me/
 
 ---
 
 ## ✨ Features
 
-* 📸 Upload a profile picture
-* 👤 Customize display name and username
-* ✅ Add a verified badge
-* 📝 Include descriptions, tips, or captions
-* 💻 Interactive code editor powered by CodeMirror
-* 🎨 Syntax highlighting with Highlight.js
-* 🌙 Dark and ☀️ Light export themes
-* ⚡ Real-time preview updates
-* 📥 Export cards as high-resolution PNG images
-* 📱 Social-media-friendly design
+- 📸 Upload a profile picture
+- 👤 Customize display name and username
+- ✅ Add a verified badge
+- 📝 Include descriptions, tips, or captions
+- 💻 Interactive code editor powered by CodeMirror
+- 🎨 Syntax highlighting with Highlight.js
+- 🌙 Dark and ☀️ Light export themes
+- ⚡ Real-time preview updates
+- 📥 Export cards as high-resolution PNG images
+- 📱 Social-media-friendly design
 
 ---
 
@@ -38,19 +38,19 @@ Create beautiful, shareable code snippet cards for social media in seconds.
 
 ### Frontend
 
-* HTML5
-* JavaScript (ES Modules)
-* Tailwind CSS
+- HTML5
+- JavaScript (ES Modules)
+- Tailwind CSS
 
 ### Libraries
 
-* CodeMirror 6
-* Highlight.js
-* html-to-image
+- CodeMirror 6
+- Highlight.js
+- html-to-image
 
 ### Deployment
 
-* Render
+- Render
 
 ---
 
@@ -106,11 +106,11 @@ code-card-generator/
 
 ## 🎯 Use Cases
 
-* Share coding tips on LinkedIn
-* Create programming content for X/Twitter
-* Post code snippets on Instagram
-* Showcase projects and tutorials
-* Build developer portfolios
+- Share coding tips on LinkedIn
+- Create programming content for X/Twitter
+- Post code snippets on Instagram
+- Showcase projects and tutorials
+- Build developer portfolios
 
 ---
 
