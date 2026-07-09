@@ -70,10 +70,7 @@
       property="og:image"
       content="https://code-card-generator.onrender.com/preview-image.png"
     />
-    <meta
-      property="og:url"
-      content="https://code-card-generator.onrender.com/"
-    />
+    <meta property="og:url" content="https://code-card-generator.onrender.com/" />
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -86,10 +83,7 @@
       name="twitter:image"
       content="https://code-card-generator.onrender.com/preview-image.png"
     />
-    <meta
-      name="google-site-verification"
-      content="0KvsByizmArsRdbAUe_Ka-tcsfVE4j0MrEx7DqP5Iyg"
-    />
+    <meta name="google-site-verification" content="0KvsByizmArsRdbAUe_Ka-tcsfVE4j0MrEx7DqP5Iyg" />
   </head>
 
   <body class="page-body min-h-screen font-sans text-white antialiased">
@@ -119,8 +113,7 @@
         </h1>
 
         <p class="mx-auto mt-4 max-w-xl text-base text-white/55 sm:text-lg">
-          Design colorful, realistic code snippet cards for social media in
-          seconds.
+          Design colorful, realistic code snippet cards for social media in seconds.
         </p>
       </header>
 
@@ -165,9 +158,7 @@
               </div>
 
               <div class="min-w-0 flex-1">
-                <p class="text-sm font-semibold text-white/90">
-                  Click to upload photo
-                </p>
+                <p class="text-sm font-semibold text-white/90">Click to upload photo</p>
                 <p class="mt-0.5 text-xs text-white/40">PNG, JPG or GIF</p>
                 <p
                   id="avatarFileName"
@@ -181,12 +172,7 @@
                 Browse
               </span>
 
-              <input
-                id="avatarInput"
-                type="file"
-                accept="image/*"
-                class="sr-only"
-              />
+              <input id="avatarInput" type="file" accept="image/*" class="sr-only" />
             </label>
           </div>
 
@@ -196,12 +182,7 @@
                 <!-- <span class="field-label__dot field-label__dot--fuchsia"></span> -->
                 Display Name
               </label>
-              <input
-                id="nameInput"
-                type="text"
-                placeholder="John Doe"
-                class="field-input"
-              />
+              <input id="nameInput" type="text" placeholder="John Doe" class="field-input" />
             </div>
 
             <div class="field-group">
@@ -209,12 +190,7 @@
                 <!-- <span class="field-label__dot field-label__dot--amber"></span> -->
                 Username
               </label>
-              <input
-                id="usernameInput"
-                type="text"
-                placeholder="john_doe"
-                class="field-input"
-              />
+              <input id="usernameInput" type="text" placeholder="john_doe" class="field-input" />
             </div>
           </div>
 
@@ -225,9 +201,7 @@
             <span class="verified-toggle__track" aria-hidden="true">
               <span class="verified-toggle__thumb"></span>
             </span>
-            <span
-              class="flex items-center gap-2 text-sm font-medium text-white/85"
-            >
+            <span class="flex items-center gap-2 text-sm font-medium text-white/85">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -267,12 +241,7 @@
               <label
                 class="code-toggle flex cursor-pointer items-center gap-2 rounded-lg border border-white/8 bg-white/4 px-3 py-1.5 transition hover:border-cyan-400/30 hover:bg-cyan-500/5"
               >
-                <input
-                  type="checkbox"
-                  id="codeToggle"
-                  class="sr-only"
-                  checked
-                />
+                <input type="checkbox" id="codeToggle" class="sr-only" checked />
                 <span class="code-toggle__track" aria-hidden="true">
                   <span class="code-toggle__thumb"></span>
                 </span>
@@ -299,13 +268,7 @@
                   class="h-8 w-8 rounded-full bg-linear-to-br from-slate-800 to-slate-950 shadow-inner ring-2 ring-white/10 transition group-hover:ring-violet-400/50"
                   aria-hidden="true"
                 ></span>
-                <input
-                  type="radio"
-                  name="bgTheme"
-                  value="dark"
-                  class="sr-only"
-                  checked
-                />
+                <input type="radio" name="bgTheme" value="dark" class="sr-only" checked />
                 Dark
               </label>
 
@@ -316,12 +279,7 @@
                   class="h-8 w-8 rounded-full bg-linear-to-br from-white to-zinc-100 shadow-md ring-2 ring-white/20 transition group-hover:ring-amber-400/50"
                   aria-hidden="true"
                 ></span>
-                <input
-                  type="radio"
-                  name="bgTheme"
-                  value="light"
-                  class="sr-only"
-                />
+                <input type="radio" name="bgTheme" value="light" class="sr-only" />
                 White
               </label>
             </div>
@@ -345,6 +303,16 @@
             </svg>
             Download PNG
           </button>
+
+          <div class="field-group">
+            <label for="paddingSlider" class="field-label">Export Vertical Margin</label>
+
+            <div class="flex items-center gap-3">
+              <input type="range" id="paddingSlider" min="0" max="100" value="25" class="w-full" />
+            </div>
+
+            <span id="paddingValue" class="min-w-12 text-sm">20px</span>
+          </div>
         </section>
 
         <!-- PREVIEW -->
@@ -355,9 +323,7 @@
                 class="live-dot h-2.5 w-2.5 rounded-full bg-emerald-400"
                 aria-hidden="true"
               ></span> -->
-              <span
-                class="text-xs font-bold tracking-[0.2em] text-white/50 uppercase"
-              >
+              <span class="text-xs font-bold tracking-[0.2em] text-white/50 uppercase">
                 Live Preview
               </span>
             </div>
@@ -374,7 +340,7 @@
               data-theme="dark"
               class="card-preview w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900 shadow-2xl"
             >
-              <div class="p-6 sm:p-7">
+              <div id="cardContent" class="p-6 sm:p-7">
                 <div class="mb-5 flex items-center gap-3.5">
                   <img
                     id="previewAvatar"
@@ -385,9 +351,7 @@
 
                   <div>
                     <div class="flex items-center gap-1.5">
-                      <h3 id="previewName" class="text-lg font-bold text-white">
-                        Name
-                      </h3>
+                      <h3 id="previewName" class="text-lg font-bold text-white">Name</h3>
 
                       <svg
                         id="verifiedBadge"
@@ -403,19 +367,19 @@
                         />
                       </svg>
                     </div>
-                    <p
-                      id="previewUsernameWrap"
-                      class="text-sm text-violet-300/70"
-                    >
-                      @<span id="previewUsername">username</span>
+                    <p id="previewUsernameWrap" class="text-sm text-violet-300/70">
+                      @
+                      <span id="previewUsername">username</span>
                     </p>
                   </div>
                 </div>
 
                 <p
-  id="previewContent"
-  class="mb-5 whitespace-pre-wrap text-base leading-relaxed text-slate-200 sm:text-lg"
->Your content appears here...</p>
+                  id="previewContent"
+                  class="mb-5 whitespace-pre-line text-base leading-relaxed text-slate-200 sm:text-lg"
+                >
+                  Your content appears here...
+                </p>
 
                 <div
                   id="previewCodeBlock"
@@ -433,11 +397,10 @@
       </div>
     </main>
 
-    <footer
-      class="mx-auto max-w-7xl px-4 pb-10 text-center text-sm text-white/55 sm:px-6"
-    >
+    <footer class="mx-auto max-w-7xl px-4 pb-10 text-center text-sm text-white/55 sm:px-6">
       <p class="font-medium text-white/80">
-        Made with love by <strong>Abhisek Sah</strong>
+        Made with love by
+        <strong>Abhisek Sah</strong>
         <span class="text-white">♥</span>
       </p>
       <p class="mt-1 space-x-2">
@@ -447,8 +410,9 @@
           target="_blank"
           rel="noreferrer"
           class="text-violet-300 hover:text-violet-200"
-          >huntedking150</a
         >
+          huntedking150
+        </a>
         <span>·</span>
         <span>LinkedIn:</span>
         <a
@@ -456,8 +420,9 @@
           target="_blank"
           rel="noreferrer"
           class="text-violet-300 hover:text-violet-200"
-          >abhisek-sah-429140238</a
         >
+          abhisek-sah-429140238
+        </a>
       </p>
     </footer>
     <script type="module" src="./app.js"></script>

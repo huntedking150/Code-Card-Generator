@@ -1,17 +1,20 @@
 {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "on",
 
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "eslint.validate": [
-        "javascript"
-    ],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "eslint.validate": ["javascript"],
 
-    "tailwindCSS.emmetCompletions": true
+  "tailwindCSS.emmetCompletions": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": false,
+  "prettier.requireConfig": true,
+  "prettier.configPath": ".prettierrc.json"
 }

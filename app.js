@@ -11,6 +11,9 @@ const usernameInput = document.getElementById('usernameInput');
 const contentInput = document.getElementById('contentInput');
 const codeEditorHost = document.getElementById('codeEditor');
 const verifiedInput = document.getElementById('verifiedInput');
+const paddingSlider = document.getElementById('paddingSlider');
+const paddingValue = document.getElementById('paddingValue');
+const cardContent = document.getElementById('cardContent');
 
 const previewAvatar = document.getElementById('previewAvatar');
 const previewName = document.getElementById('previewName');
@@ -39,7 +42,7 @@ const CARD_THEMES = {
     codeBlock: ['bg-slate-950', 'border-white/5'],
     exportBackground: '#0f172a',
     hljsStylesheet:
-      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-dark.min.css'
+      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-dark.min.css',
   },
   light: {
     card: ['bg-white', 'border-zinc-200'],
@@ -49,8 +52,8 @@ const CARD_THEMES = {
     codeBlock: ['bg-zinc-50', 'border-zinc-200'],
     exportBackground: '#ffffff',
     hljsStylesheet:
-      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-light.min.css'
-  }
+      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-light.min.css',
+  },
 };
 
 let activeCardTheme = 'dark';
@@ -85,31 +88,29 @@ const applyCardTheme = (theme) => {
 };
 
 /* ---------- Name ---------- */
-nameInput.addEventListener('input', ()=>{
+nameInput.addEventListener('input', () => {
   previewName.textContent = nameInput.value || 'Name';
 });
 
 /* ---------- Username ---------- */
 
 usernameInput.addEventListener('input', () => {
-  previewUsername.textContent =
-    usernameInput.value || 'username';
+  previewUsername.textContent = usernameInput.value || 'username';
 });
 
 /* ---------- Badge ---------- */
-verifiedInput.addEventListener('change', ()=>{
-  if(verifiedInput.checked){
+verifiedInput.addEventListener('change', () => {
+  if (verifiedInput.checked) {
     verifiedBadge.classList.remove('hidden');
   } else {
     verifiedBadge.classList.add('hidden');
   }
-})
+});
 
 /* ---------- Content ---------- */
 
 contentInput.addEventListener('input', () => {
-  previewContent.textContent =
-    contentInput.value || 'Your content appears here...';
+  previewContent.textContent = contentInput.value || 'Your content appears here...';
 });
 
 /* ---------- Code ---------- */
@@ -140,19 +141,19 @@ const codeEditorView = new EditorView({
     EditorView.theme({
       '&': {
         height: 'auto',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       },
       '&.cm-focused': {
-        outline: 'none'
+        outline: 'none',
       },
       '.cm-cursor': {
-        borderLeftColor: '#c084fc'
+        borderLeftColor: '#c084fc',
       },
       '&.cm-focused .cm-selectionBackground, .cm-selectionBackground': {
-        backgroundColor: 'rgba(124, 58, 237, 0.35) !important'
-      }
-    })
-  ]
+        backgroundColor: 'rgba(124, 58, 237, 0.35) !important',
+      },
+    }),
+  ],
 });
 
 syncCodePreview();
@@ -162,6 +163,20 @@ codeToggle.addEventListener('change', () => {
   isCodeVisible = codeToggle.checked;
   previewCodeBlock.classList.toggle('hidden', !isCodeVisible);
 });
+
+/* ---------- Padding ---------- */
+const updateCardPadding = () => {
+  const value = Number(paddingSlider.value);
+
+  cardContent.style.paddingTop = `${value}px`;
+  cardContent.style.paddingBottom = `${value}px`;
+
+  paddingValue.textContent = `${value}px`;
+};
+
+paddingSlider.addEventListener('input', updateCardPadding);
+
+updateCardPadding();
 
 /* ---------- Export background ---------- */
 
@@ -212,24 +227,24 @@ downloadBtn.addEventListener('click', async () => {
 
     const originalBorderRadius = card.style.borderRadius;
 
-card.style.borderRadius = '0';
+    card.style.borderRadius = '0';
 
-const dataUrl = await toPng(card, {
-  cacheBust: true,
-  pixelRatio: 3,
-  backgroundColor: exportBackground,
-  width: Math.max(1, Math.round(rect.width)),
-  height: Math.max(1, Math.round(rect.height)),
-  style: {
-    display: 'block',
-    width: `${Math.max(1, Math.round(rect.width))}px`,
-    height: `${Math.max(1, Math.round(rect.height))}px`,
-    margin: '0',
-    borderRadius: '0'
-  }
-});
+    const dataUrl = await toPng(card, {
+      cacheBust: true,
+      pixelRatio: 3,
+      backgroundColor: exportBackground,
+      width: Math.max(1, Math.round(rect.width)),
+      height: Math.max(1, Math.round(rect.height)),
+      style: {
+        display: 'block',
+        width: `${Math.max(1, Math.round(rect.width))}px`,
+        height: `${Math.max(1, Math.round(rect.height))}px`,
+        margin: '0',
+        borderRadius: '0',
+      },
+    });
 
-card.style.borderRadius = originalBorderRadius;
+    card.style.borderRadius = originalBorderRadius;
 
     const link = document.createElement('a');
 
