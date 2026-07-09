@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://code-card-generator.onrender.com/sitemap.xml
+Sitemap: https://cardgen.me/sitemap.xml
