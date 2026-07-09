@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 /* ---- Page background ---- */
@@ -255,9 +255,124 @@
 /* ---- Avatar upload ---- */
 
 .avatar-upload:has(input:focus-visible) {
-  border-color: #c084fc;
-  outline: 2px solid color-mix(in oklch, #a78bfa 50%, transparent);
+  border-color: #22d3ee;
+  outline: 2px solid color-mix(in oklch, #22d3ee 50%, transparent);
   outline-offset: 2px;
+}
+
+/* ---- Post image upload ---- */
+
+.post-image-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in oklch, #22d3ee 12%, transparent);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(
+      circle at top left,
+      color-mix(in oklch, #22d3ee 12%, transparent),
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, white 5%, transparent),
+      color-mix(in oklch, white 3%, transparent)
+    );
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklch, white 10%, transparent),
+    0 12px 30px color-mix(in oklch, black 28%, transparent);
+}
+
+.post-image-field__badge {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.95rem;
+  color: #67e8f9;
+  background: color-mix(in oklch, #06b6d4 14%, transparent);
+  border: 1px solid color-mix(in oklch, #22d3ee 22%, transparent);
+  box-shadow: 0 10px 20px color-mix(in oklch, #06b6d4 16%, transparent);
+  flex-shrink: 0;
+}
+
+.post-image-field__badge svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.post-image-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 1.1rem;
+  border: 1px dashed color-mix(in oklch, #22d3ee 35%, transparent);
+  background: color-mix(in oklch, white 5%, transparent);
+  color: white;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.post-image-dropzone:hover {
+  border-color: color-mix(in oklch, #22d3ee 70%, transparent);
+  background: color-mix(in oklch, #22d3ee 8%, transparent);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 22px color-mix(in oklch, #22d3ee 14%, transparent);
+}
+
+.post-image-dropzone:has(input:focus-visible) {
+  border-color: #22d3ee;
+  outline: 2px solid color-mix(in oklch, #22d3ee 45%, transparent);
+  outline-offset: 2px;
+}
+
+.post-image-dropzone__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.post-image-dropzone__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: white;
+}
+
+.post-image-dropzone__subtitle {
+  font-size: 0.8125rem;
+  color: color-mix(in oklch, white 45%, transparent);
+}
+
+.post-image-dropzone__cta {
+  flex-shrink: 0;
+  border-radius: 9999px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #e0f2fe;
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  box-shadow: 0 8px 18px color-mix(in oklch, #0ea5e9 25%, transparent);
+}
+
+.post-image-status {
+  font-size: 0.8125rem;
+  color: color-mix(in oklch, white 45%, transparent);
+}
+
+.post-image-status.is-ready {
+  color: #67e8f9;
 }
 
 /* ---- Download button ---- */
@@ -343,7 +458,7 @@
 
 .code-editor-host .cm-scroller {
   min-height: 12rem;
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
   line-height: 1.6;
 }
 
@@ -370,6 +485,6 @@
   padding: 0;
 }
 
-.card-preview[data-theme="light"] #previewAvatar {
+.card-preview[data-theme='light'] #previewAvatar {
   --tw-ring-offset-color: #fff;
 }

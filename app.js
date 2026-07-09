@@ -14,6 +14,12 @@ const verifiedInput = document.getElementById('verifiedInput');
 const paddingSlider = document.getElementById('paddingSlider');
 const paddingValue = document.getElementById('paddingValue');
 const cardContent = document.getElementById('cardContent');
+const imageToggle = document.getElementById('imageToggle');
+const postImageField = document.getElementById('postImageField');
+const postImageInput = document.getElementById('postImageInput');
+const postImageStatus = document.getElementById('postImageStatus');
+const previewImageContainer = document.getElementById('previewImageContainer');
+const previewPostImage = document.getElementById('previewPostImage');
 
 const previewAvatar = document.getElementById('previewAvatar');
 const previewName = document.getElementById('previewName');
@@ -32,6 +38,7 @@ const codeToggle = document.getElementById('codeToggle');
 const defaultCode = 'const hello = "world";';
 
 let isCodeVisible = true;
+let isImageVisible = false;
 
 const CARD_THEMES = {
   dark: {
@@ -162,6 +169,77 @@ syncCodePreview();
 codeToggle.addEventListener('change', () => {
   isCodeVisible = codeToggle.checked;
   previewCodeBlock.classList.toggle('hidden', !isCodeVisible);
+});
+
+/* ---------- Image Toggle ---------- */
+const syncImageUploadState = () => {
+  isImageVisible = imageToggle.checked;
+
+  postImageField.hidden = !isImageVisible;
+  postImageField.classList.toggle('hidden', !isImageVisible);
+  postImageInput.disabled = !isImageVisible;
+
+  const hasSelectedImage = postImageInput.files.length > 0;
+
+  if (!isImageVisible) {
+    postImageInput.value = '';
+    previewPostImage.src = '';
+    previewImageContainer.hidden = true;
+    previewImageContainer.classList.add('hidden');
+    postImageStatus.textContent = 'No image selected yet.';
+    postImageStatus.classList.remove('is-ready');
+    return;
+  }
+
+  const shouldShowPreview = hasSelectedImage && previewPostImage.src !== '';
+
+  previewImageContainer.hidden = !shouldShowPreview;
+  previewImageContainer.classList.toggle('hidden', !shouldShowPreview);
+};
+
+previewImageContainer.hidden = true;
+previewImageContainer.classList.add('hidden');
+
+imageToggle.addEventListener('change', syncImageUploadState);
+
+syncImageUploadState();
+
+postImageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+
+  if (!file) {
+    previewPostImage.src = '';
+    previewImageContainer.classList.add('hidden');
+    previewImageContainer.hidden = true;
+    postImageStatus.textContent = 'No image selected yet.';
+    postImageStatus.classList.remove('is-ready');
+    return;
+  }
+
+  if (!file.type.startsWith('image/')) {
+    alert('Please upload an image.');
+    postImageInput.value = '';
+    previewPostImage.src = '';
+    previewImageContainer.classList.add('hidden');
+    previewImageContainer.hidden = true;
+    postImageStatus.textContent = 'Please choose a PNG, JPG, or GIF image.';
+    postImageStatus.classList.remove('is-ready');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    previewPostImage.src = reader.result;
+    if (imageToggle.checked) {
+      previewImageContainer.hidden = false;
+      previewImageContainer.classList.remove('hidden');
+    }
+    postImageStatus.textContent = `Selected: ${file.name}`;
+    postImageStatus.classList.add('is-ready');
+  };
+
+  reader.readAsDataURL(file);
 });
 
 /* ---------- Padding ---------- */
