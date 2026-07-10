@@ -3,8 +3,8 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
     --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-amber-400: oklch(82.8% 0.189 84.429);
     --color-emerald-400: oklch(76.5% 0.177 163.223);
@@ -1353,6 +1353,46 @@
 .code-toggle:has(input:focus-visible) {
   outline: 2px solid #22d3ee;
   outline-offset: 2px;
+}
+#card[data-theme='dark'] .hljs {
+  color: #e2e8f0;
+  background: transparent;
+}
+#card[data-theme='dark'] .hljs-comment, #card[data-theme='dark'] .hljs-quote {
+  color: #64748b;
+  font-style: italic;
+}
+#card[data-theme='dark'] .hljs-keyword, #card[data-theme='dark'] .hljs-selector-tag, #card[data-theme='dark'] .hljs-addition {
+  color: #c084fc;
+}
+#card[data-theme='dark'] .hljs-string, #card[data-theme='dark'] .hljs-title, #card[data-theme='dark'] .hljs-section, #card[data-theme='dark'] .hljs-name {
+  color: #5eead4;
+}
+#card[data-theme='dark'] .hljs-number, #card[data-theme='dark'] .hljs-literal, #card[data-theme='dark'] .hljs-variable, #card[data-theme='dark'] .hljs-template-variable {
+  color: #fbbf24;
+}
+#card[data-theme='dark'] .hljs-attr, #card[data-theme='dark'] .hljs-property, #card[data-theme='dark'] .hljs-meta, #card[data-theme='dark'] .hljs-tag {
+  color: #93c5fd;
+}
+#card[data-theme='light'] .hljs {
+  color: #0f172a;
+  background: transparent;
+}
+#card[data-theme='light'] .hljs-comment, #card[data-theme='light'] .hljs-quote {
+  color: #64748b;
+  font-style: italic;
+}
+#card[data-theme='light'] .hljs-keyword, #card[data-theme='light'] .hljs-selector-tag, #card[data-theme='light'] .hljs-addition {
+  color: #7c3aed;
+}
+#card[data-theme='light'] .hljs-string, #card[data-theme='light'] .hljs-title, #card[data-theme='light'] .hljs-section, #card[data-theme='light'] .hljs-name {
+  color: #0f766e;
+}
+#card[data-theme='light'] .hljs-number, #card[data-theme='light'] .hljs-literal, #card[data-theme='light'] .hljs-variable, #card[data-theme='light'] .hljs-template-variable {
+  color: #b45309;
+}
+#card[data-theme='light'] .hljs-attr, #card[data-theme='light'] .hljs-property, #card[data-theme='light'] .hljs-meta, #card[data-theme='light'] .hljs-tag {
+  color: #2563eb;
 }
 .bg-theme-option:has(input:checked) {
   border-color: color-mix(in oklch, #a78bfa 60%, transparent);

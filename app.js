@@ -19,7 +19,7 @@ const postImageField = document.getElementById('postImageField');
 const postImageInput = document.getElementById('postImageInput');
 const postImageStatus = document.getElementById('postImageStatus');
 const previewImageContainer = document.getElementById('previewImageContainer');
-const previewPostImage = document.getElementById('previewPostImage');
+let previewPostImage = null;
 
 const previewAvatar = document.getElementById('previewAvatar');
 const previewName = document.getElementById('previewName');
@@ -32,7 +32,6 @@ const downloadBtn = document.getElementById('downloadBtn');
 const card = document.getElementById('card');
 const previewCodeBlock = document.getElementById('previewCodeBlock');
 const previewUsernameWrap = document.getElementById('previewUsernameWrap');
-const hljsTheme = document.getElementById('hljsTheme');
 const bgThemeInputs = document.querySelectorAll('input[name="bgTheme"]');
 const codeToggle = document.getElementById('codeToggle');
 const defaultCode = 'const hello = "world";';
@@ -48,8 +47,6 @@ const CARD_THEMES = {
     content: ['text-slate-200'],
     codeBlock: ['bg-slate-950', 'border-white/5'],
     exportBackground: '#0f172a',
-    hljsStylesheet:
-      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-dark.min.css',
   },
   light: {
     card: ['bg-white', 'border-zinc-200'],
@@ -58,8 +55,6 @@ const CARD_THEMES = {
     content: ['text-zinc-700'],
     codeBlock: ['bg-zinc-50', 'border-zinc-200'],
     exportBackground: '#ffffff',
-    hljsStylesheet:
-      'https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/atom-one-light.min.css',
   },
 };
 
@@ -68,6 +63,28 @@ let activeCardTheme = 'dark';
 const swapClasses = (element, add, remove) => {
   element.classList.remove(...remove);
   element.classList.add(...add);
+};
+
+const clearPostImagePreview = () => {
+  postImageInput.value = '';
+  previewPostImage?.remove();
+  previewPostImage = null;
+  previewImageContainer.hidden = true;
+  previewImageContainer.classList.add('hidden');
+  postImageStatus.textContent = 'No image selected yet.';
+  postImageStatus.classList.remove('is-ready');
+};
+
+const ensurePostImagePreview = () => {
+  if (!previewPostImage) {
+    previewPostImage = document.createElement('img');
+    previewPostImage.id = 'previewPostImage';
+    previewPostImage.alt = 'Post Image';
+    previewPostImage.className = 'block h-auto w-full object-contain';
+    previewImageContainer.replaceChildren(previewPostImage);
+  }
+
+  return previewPostImage;
 };
 
 const getSelectedBgTheme = () => {
@@ -89,8 +106,6 @@ const applyCardTheme = (theme) => {
   swapClasses(previewUsernameWrap, config.username, otherConfig.username);
   swapClasses(previewContent, config.content, otherConfig.content);
   swapClasses(previewCodeBlock, config.codeBlock, otherConfig.codeBlock);
-
-  hljsTheme.href = config.hljsStylesheet;
   syncCodePreview();
 };
 
@@ -182,16 +197,11 @@ const syncImageUploadState = () => {
   const hasSelectedImage = postImageInput.files.length > 0;
 
   if (!isImageVisible) {
-    postImageInput.value = '';
-    previewPostImage.src = '';
-    previewImageContainer.hidden = true;
-    previewImageContainer.classList.add('hidden');
-    postImageStatus.textContent = 'No image selected yet.';
-    postImageStatus.classList.remove('is-ready');
+    clearPostImagePreview();
     return;
   }
 
-  const shouldShowPreview = hasSelectedImage && previewPostImage.src !== '';
+  const shouldShowPreview = hasSelectedImage && previewPostImage !== null;
 
   previewImageContainer.hidden = !shouldShowPreview;
   previewImageContainer.classList.toggle('hidden', !shouldShowPreview);
@@ -208,29 +218,22 @@ postImageInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
 
   if (!file) {
-    previewPostImage.src = '';
-    previewImageContainer.classList.add('hidden');
-    previewImageContainer.hidden = true;
-    postImageStatus.textContent = 'No image selected yet.';
-    postImageStatus.classList.remove('is-ready');
+    clearPostImagePreview();
     return;
   }
 
   if (!file.type.startsWith('image/')) {
     alert('Please upload an image.');
-    postImageInput.value = '';
-    previewPostImage.src = '';
-    previewImageContainer.classList.add('hidden');
-    previewImageContainer.hidden = true;
+    clearPostImagePreview();
     postImageStatus.textContent = 'Please choose a PNG, JPG, or GIF image.';
-    postImageStatus.classList.remove('is-ready');
     return;
   }
 
   const reader = new FileReader();
 
   reader.onload = () => {
-    previewPostImage.src = reader.result;
+    const imagePreview = ensurePostImagePreview();
+    imagePreview.src = reader.result;
     if (imageToggle.checked) {
       previewImageContainer.hidden = false;
       previewImageContainer.classList.remove('hidden');
